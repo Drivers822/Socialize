@@ -1,0 +1,75 @@
+/* src/components/Footer.css */
+.footer {
+  background: linear-gradient(to right, #19333b, #254d5b);
+  color: #ffffff;
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.footer-left img {
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #00eaff;
+}
+
+.footer-left h3 {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-center {
+  flex: 1;
+  color: #eee;
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-center svg {
+  margin-right: 8px;
+  color: #ffb6c1;
+}
+
+.footer-right {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.3rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.footer-right a {
+  color: #ffffff;
+  transition: transform 0.2s;
+}
+
+.footer-right a:hover {
+  transform: scale(1.1);
+  color: #00eaff;
+}
+
+.footer-bottom {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}

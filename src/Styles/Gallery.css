@@ -1,0 +1,140 @@
+.gallery-section {
+  padding: 3rem 1rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.gallery-label {
+  color: #6b6b6b;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #000;
+}
+
+.gallery-title .highlight {
+  color: #001f9c;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.carousel-frame {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 0 1rem;
+  scrollbar-width: none;
+}
+
+.carousel-frame::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+  height: 420px; /* ✅ Increased height */
+  transition: transform 0.3s;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.02);
+}
+
+.carousel-arrow {
+  background: #001f9c;
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
+  z-index: 1;
+}
+
+.carousel-arrow:hover {
+  background: #000058;
+}
+
+.carousel-arrow.left {
+  margin-right: 0.5rem;
+}
+
+.carousel-arrow.right {
+  margin-left: 0.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .gallery-title {
+    font-size: 1.8rem;
+  }
+
+  .carousel-frame {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-title {
+    font-size: 1.5rem;
+  }
+
+  .gallery-item {
+    max-width: 300px;
+  }
+
+  .gallery-item img {
+    height: 340px; /* ✅ Adjusted */
+  }
+
+  .carousel-arrow {
+    font-size: 1.5rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-frame {
+    gap: 0.8rem;
+    padding: 0 0.5rem;
+  }
+
+  .gallery-item {
+    max-width: 260px;
+  }
+
+  .gallery-item img {
+    height: 300px; /* ✅ Adjusted */
+  }
+
+  .carousel-arrow {
+    font-size: 1.2rem;
+    padding: 0.2rem 0.4rem;
+  }
+}

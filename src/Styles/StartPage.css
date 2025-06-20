@@ -1,0 +1,77 @@
+/* src/styles/StartPage.css */
+
+.start-page {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); /* Attractive dark gradient */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: #fff;
+  width: 90%;
+  max-width: 500px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.btn-link {
+  flex: 1;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #e68200;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .button-group {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .overlay {
+    padding: 2rem 1.5rem;
+  }
+
+  .action-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+}

@@ -1,0 +1,59 @@
+/* src/components/DriverCharges.css */
+.pricing-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pricing-label {
+  text-transform: uppercase;
+  color: gray;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-title {
+  font-size: 2rem;
+  color: #000058;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.pricing-box {
+  background-color: #f8fffe;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.pricing-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.check-icon {
+  color: #1a9e63;
+  font-size: 1.5rem;
+  margin-top: 4px;
+}
+
+.custom-note {
+  margin-top: 2rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.custom-note a {
+  color: #1a9e63;
+  text-decoration: none;
+}
+
+.custom-note a:hover {
+  text-decoration: underline;
+}
