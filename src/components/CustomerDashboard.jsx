@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/customers.css';
 
 const CustomerDashboard = () => {
@@ -16,24 +16,30 @@ const CustomerDashboard = () => {
     profilePhoto: null,
   });
 
-  const generateCustomerId = (vehicleType) => {
-    const prefix = vehicleType.slice(0, 3).toUpperCase();
-    const random = Math.floor(1000 + Math.random() * 9000);
-    return `${prefix}-${Date.now().toString().slice(-5)}-${random}`;
-  };
+  // Auto-generate Customer ID when name or email changes
+  useEffect(() => {
+    if (formData.fullName || formData.email) {
+      const namePart = formData.fullName.replace(/\s+/g, '').slice(0, 3).toUpperCase();
+      const emailPart = formData.email.split('@')[0].slice(0, 3).toUpperCase();
+      const random = Math.floor(1000 + Math.random() * 9000);
+      const id = `CUST-${namePart}${emailPart}-${random}`;
+      setFormData((prev) => ({
+        ...prev,
+        customerId: id,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        customerId: '',
+      }));
+    }
+  }, [formData.fullName, formData.email]);
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
 
     if (type === 'file') {
       setFormData((prev) => ({ ...prev, [name]: files[0] }));
-    } else if (name === 'vehicleType') {
-      const newId = value ? generateCustomerId(value) : '';
-      setFormData((prev) => ({
-        ...prev,
-        vehicleType: value,
-        customerId: newId,
-      }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
@@ -71,10 +77,6 @@ Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
     });
 
     document.getElementById('profilePhoto').value = '';
-  };
-
-  const handleExtraAction = () => {
-    alert("Extra action clicked!");
   };
 
   return (
@@ -203,19 +205,25 @@ Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
           rows={3}
         />
 
-
-        {/* Google Maps Button */}
-        <button
-          type="button"
-          className="map-btn"
-          onClick={() => window.open('https://www.google.com/maps', '_blank')}
-        >
-          Google Map
-        </button>
-
-
-
-
+        {/* 🌐 Google Map Button */}
+        <div style={{ marginTop: '1rem' }}>
+          <button
+            type="button"
+            onClick={() => window.open('https://www.google.com/maps', '_blank')}
+            style={{
+              backgroundColor: '#4285F4',
+              color: 'white',
+              padding: '0.5rem 1rem',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              marginBottom: '1rem',
+            }}
+          >
+            🗺️ Open Google Map
+          </button>
+        </div>
 
         <button type="submit">Book Driver</button>
       </form>
