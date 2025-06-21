@@ -24,7 +24,8 @@ Message: ${reviewText}`);
 
   return (
     <div className="reviews-container">
-      <h2>Write a Review</h2>
+      <h2 class="write-review-heading">Write a Review</h2>
+
       <form onSubmit={handleSubmit} className="review-form">
         <select
           name="userType"
