@@ -17,8 +17,8 @@ const CustomerDashboard = () => {
   });
 
   const generateCustomerId = (vehicleType) => {
-    const prefix = vehicleType.slice(0, 3).toUpperCase(); // e.g., "CAR", "VAN"
-    const random = Math.floor(1000 + Math.random() * 9000); // 4-digit random number
+    const prefix = vehicleType.slice(0, 3).toUpperCase();
+    const random = Math.floor(1000 + Math.random() * 9000);
     return `${prefix}-${Date.now().toString().slice(-5)}-${random}`;
   };
 
@@ -42,10 +42,6 @@ const CustomerDashboard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
-      formData.pickupLocation
-    )}&destination=${encodeURIComponent(formData.dropLocation)}`;
-
     alert(`Booking submitted!
 Customer ID: ${formData.customerId}
 Name: ${formData.fullName}
@@ -59,8 +55,6 @@ Drop Location: ${formData.dropLocation}
 Additional Requirements: ${formData.requirements || 'None'}
 Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
 `);
-
-    window.open(mapsUrl, '_blank');
 
     setFormData({
       customerId: '',
@@ -79,6 +73,10 @@ Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
     document.getElementById('profilePhoto').value = '';
   };
 
+  const handleExtraAction = () => {
+    alert("Extra action clicked!");
+  };
+
   return (
     <div className="page-center">
       <form onSubmit={handleSubmit} className="container" noValidate>
@@ -89,9 +87,7 @@ Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
           id="customerId"
           type="text"
           name="customerId"
-          placeholder=""
           value={formData.customerId}
-          onChange={handleChange}
           readOnly
         />
 
@@ -206,6 +202,20 @@ Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
           onChange={handleChange}
           rows={3}
         />
+
+
+        {/* Google Maps Button */}
+        <button
+          type="button"
+          className="map-btn"
+          onClick={() => window.open('https://www.google.com/maps', '_blank')}
+        >
+          Google Map
+        </button>
+
+
+
+
 
         <button type="submit">Book Driver</button>
       </form>
