@@ -26,7 +26,7 @@ const DriverRegistration = () => {
   const [ocrText, setOcrText] = useState({ front: '', back: '' });
   const [ocrLicenseNumber, setOcrLicenseNumber] = useState('');
 
-  const userRole = localStorage.getItem('userRole') || 'driver'; // Default to driver
+  const userRole = localStorage.getItem('userRole') || 'driver';
 
   const generateDriverId = (vehicleType) => {
     const prefix = vehicleType.slice(0, 3).toUpperCase();
@@ -231,9 +231,17 @@ License Verified: Yes`);
         <label>License Back</label>
         <input id="licenseBack" type="file" name="licenseBack" accept="image/*" onChange={handleChange} required />
 
+        {/* 🔍 Verification Messages */}
         {verifying && <p>🔍 Verifying license using AI (OCR)...</p>}
         {licenseError && <p style={{ color: 'red' }}>{licenseError}</p>}
+        {formData.licenseVerified && !licenseError && (
+          <p style={{ color: 'green' }}>✅ License verification successful!</p>
+        )}
+        {!formData.licenseVerified && !verifying && !licenseError && formData.licenseFront && formData.licenseBack && formData.licenseNumber && (
+          <p style={{ color: 'red' }}>❌ License not verified. Please check the uploaded images or number.</p>
+        )}
 
+        {/* 👨‍💼 Admin OCR debug section */}
         {userRole === 'admin' && (
           <>
             {ocrLicenseNumber && (
@@ -266,6 +274,26 @@ License Verified: Yes`);
 
         <label>Additional Info</label>
         <textarea name="additionalInfo" value={formData.additionalInfo} onChange={handleChange} rows="3" />
+
+        {/* 🌐 Google Map Button */}
+        <div style={{ marginTop: '1rem' }}>
+          <button
+            type="button"
+            onClick={() => window.open('https://www.google.com/maps', '_blank')}
+            style={{
+              backgroundColor: '#4285F4',
+              color: 'white',
+              padding: '0.5rem 1rem',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              marginBottom: '1rem',
+            }}
+          >
+            🗺️ Open Google Map
+          </button>
+        </div>
 
         <button type="submit" disabled={!formData.licenseVerified || !formData.acceptedTerms}>
           Register
