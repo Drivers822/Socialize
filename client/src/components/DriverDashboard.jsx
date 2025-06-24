@@ -247,6 +247,7 @@ const handleSubmit = async (e) => {
 
   return (
     <>
+    <Navbar />
       <div className="page-center">
         <form onSubmit={handleSubmit} className="container" noValidate>
           <h2>Driver Registration Form</h2>

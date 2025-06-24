@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/customers.css';
 import Footer from './Footer'; // ✅ Import Footer
+import Navbar from './Navbar';
 
 const CustomerDashboard = () => {
   const [formData, setFormData] = useState({
@@ -87,7 +88,7 @@ const handleSubmit = async (e) => {
   });
 
   try {
-    const res = await fetch('http://localhost:5000/api/customer/book', {
+    const res = await fetch('http://localhost:5000/api/customer/bookings', {
       method: 'POST',
       body: form,
     });
@@ -119,6 +120,7 @@ const handleSubmit = async (e) => {
 
   return (
     <>
+     <Navbar />
       <div className="page-center">
         <form onSubmit={handleSubmit} className="container" noValidate>
           <h2>Customer Booking Form</h2>
