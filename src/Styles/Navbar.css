@@ -12,7 +12,7 @@ nav {
   z-index: 10;
 }
 
-/* Logo container */
+/* Logo */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -44,13 +44,14 @@ nav {
   color: #ffcc00;
 }
 
-/* Nav links */
+/* Nav Links */
 .nav-links {
   display: flex;
   gap: 2rem;
   justify-content: center;
   align-items: center;
-  flex: 2;
+  flex: 1;
+  transition: all 0.3s ease;
 }
 
 .nav-links a {
@@ -65,13 +66,62 @@ nav {
   color: #ffcc00;
 }
 
-/* Logout button */
-.nav-right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
+/* Hamburger */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: #f7f6ec;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 
+/* Actions (Review + Profile + Logout) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Review Button */
+.review-icon-with-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  background-color: #ffcc00;
+  color: #21252c;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.review-icon-with-label:hover {
+  background-color: #e6b800;
+  color: #fff;
+}
+
+.review-icon-with-label .star-icon {
+  color: #21252c;
+}
+
+/* Profile Icon */
+.profile-icon {
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+  color: #007bff;
+}
+
+/* Logout Button */
 .logout-btn {
   background-color: #ff3b3b;
   border: none;
@@ -88,17 +138,7 @@ nav {
   background-color: #e63946;
 }
 
-/* Hamburger menu button */
-.hamburger {
-  display: none;
-  font-size: 2rem;
-  color: rgb(247, 246, 236);
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-/* Responsive styles */
+/* Responsive - Tablet */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -108,36 +148,34 @@ nav {
 
   .hamburger {
     display: block;
-    position: absolute;
-    top: 16px;
-    right: 16px;
   }
 
   .nav-links {
     flex-direction: column;
     width: 100%;
     display: none;
-    margin-top: 1rem;
     gap: 1rem;
+    margin-top: 1rem;
   }
 
   .nav-links.active {
     display: flex;
   }
 
-  .nav-right {
-    justify-content: center;
-    margin-top: 1rem;
+  .nav-actions {
+    flex-direction: column;
     width: 100%;
+    align-items: center;
+    margin-top: 1rem;
   }
 
   .logo-img {
-    height: 36px;
-    width: 36px;
+    height: 40px;
+    width: 40px;
   }
 
   .logo-title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .nav-links a {
@@ -150,6 +188,7 @@ nav {
   }
 }
 
+/* Responsive - Mobile */
 @media (max-width: 480px) {
   .logo-img {
     height: 30px;
@@ -168,41 +207,13 @@ nav {
     font-size: 0.9rem;
     padding: 0.4rem 0.9rem;
   }
-}
-.review-icon-with-label {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 1rem;
-  background-color: #ffcc00; /* Yellow */
-  color: #21252c; /* Dark text for contrast */
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-}
 
-.review-icon-with-label:hover {
-  background-color: #e6b800;
-  color: #fff;
-}
-.review-icon-with-label .star-icon {
-  color: #21252c; /* Adjust as needed */
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-left: auto;
-}
+  .review-icon-with-label {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+  }
 
-.profile-icon {
-  color: #fffcfc;
-  transition: color 0.3s ease;
+  .profile-icon {
+    font-size: 1.2rem;
+  }
 }
-
-.profile-icon:hover {
-  color: #007bff;
-}
-
-
