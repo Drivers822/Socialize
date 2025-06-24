@@ -1,16 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/HomePage.css';
+import { FaWhatsapp } from 'react-icons/fa';
+
 import taxiIllustration from '../assets/hero-img copy.png';
 import bookedIllustration from '../assets/hero-bg-2.jpg';
-import About from './About'; // ✅ Corrected path
-import WhyUs from './WhyUs'; // ✅ Corrected path
-import CoreFeatures from './CoreFeatures'; // ✅ Corrected path
-import Gallery from './Gallery'; // ✅ Corrected path
-import Team from './Team'; // ✅ Corrected path
-import Pricing from './Pricing'; // ✅ Corrected path
-import Contacts from './Contacts'; // ✅ Corrected path
-import Footer from './Footer'; // ✅ Corrected path
+import About from './About';
+import WhyUs from './WhyUs';
+import CoreFeatures from './CoreFeatures';
+import Gallery from './Gallery';
+import Team from './Team';
+import Pricing from './Pricing';
+import Contacts from './Contacts';
+import Footer from './Footer';
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -32,7 +34,7 @@ const HeroSection = () => {
           <div className="hero-buttons">
             <button className="round-arrow">{'➡'}</button>
             <button className="get-started" onClick={() => navigate('/start')}>
-              Get Started - "Sign In First" 
+              Get Started - "Sign In First"
             </button>
             <button className="round-arrow">{'⬅'}</button>
           </div>
@@ -52,7 +54,6 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Optionally render About section below */}
       <About />
       <WhyUs />
       <CoreFeatures />
@@ -61,6 +62,16 @@ const HeroSection = () => {
       <Pricing />
       <Contacts />
       <Footer />
+
+      {/* ✅ WhatsApp Floating Icon */}
+      <a
+        href="https://wa.me/917219080839" // Replace XXXXXXXXXX with your WhatsApp number
+        className="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaWhatsapp size={32} />
+      </a>
     </>
   );
 };
