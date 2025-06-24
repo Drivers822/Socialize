@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Drivers.css';
 import Tesseract from 'tesseract.js';
+import Footer from './Footer'; // ✅ Import Footer
 
 const DriverRegistration = () => {
   const [formData, setFormData] = useState({
@@ -185,121 +186,122 @@ License Verified: Yes`);
   };
 
   return (
-    <div className="page-center">
-      <form onSubmit={handleSubmit} className="container" noValidate>
-        <h2>Driver Registration Form</h2>
+    <>
+      <div className="page-center">
+        <form onSubmit={handleSubmit} className="container" noValidate>
+          <h2>Driver Registration Form</h2>
 
-        <label>Driver ID</label>
-        <input type="text" name="driverId" value={formData.driverId} readOnly />
+          <label>Driver ID</label>
+          <input type="text" name="driverId" value={formData.driverId} readOnly />
 
-        <label>Full Name</label>
-        <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
+          <label>Full Name</label>
+          <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
 
-        <label>Email</label>
-        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <label>Email</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
 
-        <label>Phone</label>
-        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+          <label>Phone</label>
+          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
 
-        <label>Date of Birth</label>
-        <input type="date" name="dob" value={formData.dob} onChange={handleChange} required />
+          <label>Date of Birth</label>
+          <input type="date" name="dob" value={formData.dob} onChange={handleChange} required />
 
-        <label>License Number</label>
-        <input type="text" name="licenseNumber" value={formData.licenseNumber} onChange={handleChange} required />
+          <label>License Number</label>
+          <input type="text" name="licenseNumber" value={formData.licenseNumber} onChange={handleChange} required />
 
-        <label>Experience</label>
-        <input type="text" name="experiance" value={formData.experiance} onChange={handleChange} required />
+          <label>Experience</label>
+          <input type="text" name="experiance" value={formData.experiance} onChange={handleChange} required />
 
-        <label>Vehicle Type</label>
-        <select name="vehicleType" value={formData.vehicleType} onChange={handleChange} required>
-          <option value="">Select</option>
-          <option value="car">Car</option>
-          <option value="van">Van</option>
-          <option value="truck">Truck</option>
-          <option value="bus">Bus</option>
-        </select>
+          <label>Vehicle Type</label>
+          <select name="vehicleType" value={formData.vehicleType} onChange={handleChange} required>
+            <option value="">Select</option>
+            <option value="car">Car</option>
+            <option value="van">Van</option>
+            <option value="truck">Truck</option>
+            <option value="bus">Bus</option>
+          </select>
 
-        <label>Availability Date</label>
-        <input type="date" name="availabilityDate" value={formData.availabilityDate} onChange={handleChange} required />
+          <label>Availability Date</label>
+          <input type="date" name="availabilityDate" value={formData.availabilityDate} onChange={handleChange} required />
 
-        <label>Profile Photo</label>
-        <input id="profilePhoto" type="file" name="profilePhoto" accept="image/*" onChange={handleChange} required />
+          <label>Profile Photo</label>
+          <input id="profilePhoto" type="file" name="profilePhoto" accept="image/*" onChange={handleChange} required />
 
-        <label>License Front</label>
-        <input id="licenseFront" type="file" name="licenseFront" accept="image/*" onChange={handleChange} required />
+          <label>License Front</label>
+          <input id="licenseFront" type="file" name="licenseFront" accept="image/*" onChange={handleChange} required />
 
-        <label>License Back</label>
-        <input id="licenseBack" type="file" name="licenseBack" accept="image/*" onChange={handleChange} required />
+          <label>License Back</label>
+          <input id="licenseBack" type="file" name="licenseBack" accept="image/*" onChange={handleChange} required />
 
-        {/* 🔍 Verification Messages */}
-        {verifying && <p>🔍 Verifying license using AI (OCR)...</p>}
-        {licenseError && <p style={{ color: 'red' }}>{licenseError}</p>}
-        {formData.licenseVerified && !licenseError && (
-          <p style={{ color: 'green' }}>✅ License verification successful!</p>
-        )}
-        {!formData.licenseVerified && !verifying && !licenseError && formData.licenseFront && formData.licenseBack && formData.licenseNumber && (
-          <p style={{ color: 'red' }}>❌ License not verified. Please check the uploaded images or number.</p>
-        )}
+          {verifying && <p>🔍 Verifying license using AI (OCR)...</p>}
+          {licenseError && <p style={{ color: 'red' }}>{licenseError}</p>}
+          {formData.licenseVerified && !licenseError && (
+            <p style={{ color: 'green' }}>✅ License verification successful!</p>
+          )}
+          {!formData.licenseVerified && !verifying && !licenseError && formData.licenseFront && formData.licenseBack && formData.licenseNumber && (
+            <p style={{ color: 'red' }}>❌ License not verified. Please check the uploaded images or number.</p>
+          )}
 
-        {/* 👨‍💼 Admin OCR debug section */}
-        {userRole === 'admin' && (
-          <>
-            {ocrLicenseNumber && (
-              <p>🔎 Extracted License Number: <strong>{ocrLicenseNumber}</strong></p>
-            )}
-            {ocrText.front && (
-              <>
-                <label>🔍 OCR Front Text (Debug)</label>
-                <textarea value={ocrText.front} rows="2" readOnly />
-              </>
-            )}
-            {ocrText.back && (
-              <>
-                <label>🔍 OCR Back Text (Debug)</label>
-                <textarea value={ocrText.back} rows="2" readOnly />
-              </>
-            )}
-          </>
-        )}
+          {userRole === 'admin' && (
+            <>
+              {ocrLicenseNumber && (
+                <p>🔎 Extracted License Number: <strong>{ocrLicenseNumber}</strong></p>
+              )}
+              {ocrText.front && (
+                <>
+                  <label>🔍 OCR Front Text (Debug)</label>
+                  <textarea value={ocrText.front} rows="2" readOnly />
+                </>
+              )}
+              {ocrText.back && (
+                <>
+                  <label>🔍 OCR Back Text (Debug)</label>
+                  <textarea value={ocrText.back} rows="2" readOnly />
+                </>
+              )}
+            </>
+          )}
 
-        {formData.licenseVerified && (
-          <div className="checkbox-field">
-            <input id="acceptedTerms" type="checkbox" name="acceptedTerms" checked={formData.acceptedTerms} onChange={handleChange} required />
-            <label htmlFor="acceptedTerms">
-              I accept the <strong>Terms & Conditions</strong>:<br />
-              If the license is fake, the driver will be permanently banned.
-            </label>
+          {formData.licenseVerified && (
+            <div className="checkbox-field">
+              <input id="acceptedTerms" type="checkbox" name="acceptedTerms" checked={formData.acceptedTerms} onChange={handleChange} required />
+              <label htmlFor="acceptedTerms">
+                I accept the <strong>Terms & Conditions</strong>:<br />
+                If the license is fake, the driver will be permanently banned.
+              </label>
+            </div>
+          )}
+
+          <label>Additional Info</label>
+          <textarea name="additionalInfo" value={formData.additionalInfo} onChange={handleChange} rows="3" />
+
+          <div style={{ marginTop: '1rem' }}>
+            <button
+              type="button"
+              onClick={() => window.open('https://www.google.com/maps', '_blank')}
+              style={{
+                backgroundColor: '#4285F4',
+                color: 'white',
+                padding: '0.5rem 1rem',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                marginBottom: '1rem',
+              }}
+            >
+              🗺️ Open Google Map
+            </button>
           </div>
-        )}
 
-        <label>Additional Info</label>
-        <textarea name="additionalInfo" value={formData.additionalInfo} onChange={handleChange} rows="3" />
-
-        {/* 🌐 Google Map Button */}
-        <div style={{ marginTop: '1rem' }}>
-          <button
-            type="button"
-            onClick={() => window.open('https://www.google.com/maps', '_blank')}
-            style={{
-              backgroundColor: '#4285F4',
-              color: 'white',
-              padding: '0.5rem 1rem',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              marginBottom: '1rem',
-            }}
-          >
-            🗺️ Open Google Map
+          <button type="submit" disabled={!formData.licenseVerified || !formData.acceptedTerms}>
+            Register
           </button>
-        </div>
+        </form>
+      </div>
 
-        <button type="submit" disabled={!formData.licenseVerified || !formData.acceptedTerms}>
-          Register
-        </button>
-      </form>
-    </div>
+      <Footer /> {/* ✅ Footer at the bottom */}
+    </>
   );
 };
 
