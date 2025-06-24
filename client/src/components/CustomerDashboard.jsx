@@ -46,39 +46,78 @@ const CustomerDashboard = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
 
-    alert(`Booking submitted!
-Customer ID: ${formData.customerId}
-Name: ${formData.fullName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Date: ${formData.bookingDate}
-Driver Preference: ${formData.driverPreference}
-Vehicle Type: ${formData.vehicleType}
-Pickup Location: ${formData.pickupLocation}
-Drop Location: ${formData.dropLocation}
-Additional Requirements: ${formData.requirements || 'None'}
-Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
-`);
+//     alert(`Booking submitted!
+// Customer ID: ${formData.customerId}
+// Name: ${formData.fullName}
+// Email: ${formData.email}
+// Phone: ${formData.phone}
+// Date: ${formData.bookingDate}
+// Driver Preference: ${formData.driverPreference}
+// Vehicle Type: ${formData.vehicleType}
+// Pickup Location: ${formData.pickupLocation}
+// Drop Location: ${formData.dropLocation}
+// Additional Requirements: ${formData.requirements || 'None'}
+// Profile Photo: ${formData.profilePhoto?.name || 'Not uploaded'}
+// `);
 
-    setFormData({
-      customerId: '',
-      fullName: '',
-      email: '',
-      phone: '',
-      bookingDate: '',
-      driverPreference: '',
-      vehicleType: '',
-      requirements: '',
-      pickupLocation: '',
-      dropLocation: '',
-      profilePhoto: null,
+//     setFormData({
+//       customerId: '',
+//       fullName: '',
+//       email: '',
+//       phone: '',
+//       bookingDate: '',
+//       driverPreference: '',
+//       vehicleType: '',
+//       requirements: '',
+//       pickupLocation: '',
+//       dropLocation: '',
+//       profilePhoto: null,
+//     });
+
+//     document.getElementById('profilePhoto').value = '';
+//   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const form = new FormData();
+  Object.keys(formData).forEach((key) => {
+    if (formData[key]) form.append(key, formData[key]);
+  });
+
+  try {
+    const res = await fetch('http://localhost:5000/api/customer/book', {
+      method: 'POST',
+      body: form,
     });
 
-    document.getElementById('profilePhoto').value = '';
-  };
+    if (res.ok) {
+      alert('✅ Booking submitted successfully!');
+      // reset form
+      setFormData({
+        customerId: '',
+        fullName: '',
+        email: '',
+        phone: '',
+        bookingDate: '',
+        driverPreference: '',
+        vehicleType: '',
+        requirements: '',
+        pickupLocation: '',
+        dropLocation: '',
+        profilePhoto: null,
+      });
+      document.getElementById('profilePhoto').value = '';
+    } else {
+      alert('❌ Failed to submit booking.');
+    }
+  } catch (err) {
+    alert('❌ Error: ' + err.message);
+  }
+};
 
   return (
      <>
