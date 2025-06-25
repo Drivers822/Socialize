@@ -73,3 +73,14 @@
   font-size: 0.9rem;
   color: #ccc;
 }
+.footer-home-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #00bfff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-home-link:hover {
+  text-decoration: underline;
+}

@@ -1,6 +1,6 @@
 /* src/components/WhyChooseUs.css */
 .why-section {
-  padding: 4rem 2rem;
+  padding: 4rem 1.5rem;
   background: #fefefe;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
@@ -8,18 +8,15 @@
 
 .why-section h2 {
   color: #000058;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -27,59 +24,63 @@
 .feature-box {
   background: #fff;
   border: 1px solid #eaeaea;
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 16px;
+  padding: 2.25rem 2rem;        /* a touch more padding */
   display: flex;
   align-items: center;
-  gap: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  gap: 1.25rem;
+  transition: 0.3s all ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 .feature-box:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .feature-icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #000058;
+  flex-shrink: 0;
 }
 
 .feature-text {
   font-weight: 600;
   color: #000058;
-  font-size: 1rem;
+  font-size: 1.1rem;
   text-align: left;
+  flex: 1;
 }
 
+/* Tablet */
 @media (max-width: 768px) {
+  .why-section h2 { font-size: 2rem; }
+
   .feature-box {
     flex-direction: column;
     text-align: center;
-    align-items: center;
+    padding: 2rem 1.5rem;
   }
 
-  .feature-text {
-    text-align: center;
-    font-size: 0.95rem;
-  }
-
-  .feature-icon {
-    font-size: 1.75rem;
-  }
+  .feature-icon { font-size: 2.25rem; }
+  .feature-text { text-align: center; }
 }
 
+/* Mobile — square-ish cards */
 @media (max-width: 480px) {
-  .why-section h2 {
-    font-size: 1.5rem;
-  }
+  .why-section h2 { font-size: 1.6rem; }
+
+  /* one column grid */
+  .features-grid { grid-template-columns: 1fr; }
 
   .feature-box {
-    padding: 1rem;
+    /* keep width≈height to avoid long rectangles */
+    aspect-ratio: 1 / 1;
+    /* center everything nicely */
+    justify-content: center;
+    padding: 1.75rem 1.25rem;
   }
 
-  .feature-text {
-    font-size: 0.9rem;
-  }
+  .feature-icon  { font-size: 2rem; }
+  .feature-text  { font-size: 0.95rem; }
 }

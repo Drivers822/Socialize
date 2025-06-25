@@ -1,5 +1,5 @@
-// src/components/Footer.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../Styles/Footer.css';
 import logo from '../assets/logo.png';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
@@ -10,17 +10,23 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
 
+        {/* Left Section: Logo + Name + Home Button */}
         <div className="footer-left">
-          <img src={logo} alt="Drivers-Socialize-Networks" />
+          <img src={logo} alt="Drivers-Socialize-Networks" className="footer-logo" />
           <h3>Drivers-Socialize-Networks</h3>
+
+          {/* ✅ Home Button Below Logo + Name */}
+          <Link to="/" className="footer-home-link">Home</Link>
         </div>
 
+        {/* Center Section: Address + Contact */}
         <div className="footer-center">
           <p><FaMapMarkerAlt /> Sinnar, Nashik, Maharashtra</p>
           <p><FaPhoneAlt /> +91 7219080839</p>
           <p><FaEnvelope /> driverssocializenetworks@gmail.com</p>
         </div>
 
+        {/* Right Section: Social Links */}
         <div className="footer-right">
           <a href="https://x.com/DriversN3400" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
           <a href="https://www.facebook.com/people/Drivers-Socialize-Networks/61575241652399/" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
@@ -29,6 +35,7 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Bottom Line */}
       <p className="footer-bottom">
         © 2025 <strong>Drivers-Socialize-Networks</strong>. All Rights Reserved.
       </p>
