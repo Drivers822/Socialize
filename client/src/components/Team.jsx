@@ -21,9 +21,9 @@ const teamData = [
     image: ceoImg,
     social: [
       { platform: 'x', link: 'https://x.com/DriversN3400' },
-      { platform: 'facebook', link: 'https://www.facebook.com/people/Drivers-Socialize-Networks/61575241652399/' },
-      { platform: 'instagram', link: 'https://www.instagram.com/drivers_socialize_networks/?hl=en' },
-      { platform: 'linkedin', link: 'https://www.linkedin.com/company/drivers-socialize-networks/?viewAsMember=true' },
+      { platform: 'facebook', link: 'https://www.facebook.com/profile.php?id=100093082359714' },
+      { platform: 'instagram', link: 'https://www.instagram.com/er_rushikesh_634/' },
+      { platform: 'linkedin', link: 'https://www.linkedin.com/in/er-rushikesh-kekane-8018a41a7/' },
     ],
   },
   {
