@@ -14,16 +14,31 @@ const Footer = () => {
         <div className="footer-left">
           <img src={logo} alt="Drivers-Socialize-Networks" className="footer-logo" />
           <h3>Drivers-Socialize-Networks</h3>
-
-          {/* ✅ Home Button Below Logo + Name */}
           <Link to="/" className="footer-home-link">Home</Link>
         </div>
 
         {/* Center Section: Address + Contact */}
         <div className="footer-center">
-          <p><FaMapMarkerAlt /> Sinnar, Nashik, Maharashtra</p>
-          <p><FaPhoneAlt /> +91 7219080839</p>
-          <p><FaEnvelope /> driverssocializenetworks@gmail.com</p>
+          <p>
+            <FaMapMarkerAlt />{' '}
+            <a
+              href="https://www.google.com/maps/place/Sinnar,+Maharashtra"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sinnar, Nashik, Maharashtra
+            </a>
+          </p>
+          <p>
+            <FaPhoneAlt />{' '}
+            <a href="tel:+917219080839">+91 7219080839</a>
+          </p>
+          <p>
+            <FaEnvelope />{' '}
+            <a href="mailto:driverssocializenetworks@gmail.com">
+              driverssocializenetworks@gmail.com
+            </a>
+          </p>
         </div>
 
         {/* Right Section: Social Links */}
