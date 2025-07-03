@@ -148,106 +148,67 @@ const DriverRegistration = () => {
     }
   };
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (!formData.licenseVerified || !formData.acceptedTerms) {
-//       alert('❌ Please upload a verified license and accept the terms.');
-//       return;
-//     }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-//     alert(`✅ Driver Registered!
-// Driver ID: ${formData.driverId}
-// Name: ${formData.fullName}
-// DOB: ${formData.dob}
-// License Verified: Yes`);
-
-//     setFormData({
-//       driverId: '',
-//       fullName: '',
-//       email: '',
-//       phone: '',
-//       licenseNumber: '',
-//       experiance: '',
-//       vehicleType: '',
-//       availabilityDate: '',
-//       dob: '',
-//       additionalInfo: '',
-//       profilePhoto: null,
-//       licenseFront: null,
-//       licenseBack: null,
-//       licenseVerified: false,
-//       acceptedTerms: false,
-//     });
-
-//     setOcrText({ front: '', back: '' });
-//     setOcrLicenseNumber('');
-//     document.getElementById('profilePhoto').value = '';
-//     document.getElementById('licenseFront').value = '';
-//     document.getElementById('licenseBack').value = '';
-//   };
-
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (!formData.licenseVerified || !formData.acceptedTerms) {
-    alert('❌ Please upload a verified license and accept the terms.');
-    return;
-  }
-
-  const form = new FormData();
-  for (let key in formData) {
-    if (formData[key] instanceof File || typeof formData[key] === 'boolean') {
-      form.append(key, formData[key]);
-    } else {
-      form.append(key, formData[key] || '');
+    if (!formData.licenseVerified || !formData.acceptedTerms) {
+      alert('❌ Please upload a verified license and accept the terms.');
+      return;
     }
-  }
 
-  try {
-    const res = await fetch('http://localhost:5000/api/register-driver', {
-      method: 'POST',
-      body: form,
-    });
+    const form = new FormData();
+    for (let key in formData) {
+      if (formData[key] instanceof File || typeof formData[key] === 'boolean') {
+        form.append(key, formData[key]);
+      } else {
+        form.append(key, formData[key] || '');
+      }
+    }
 
-    const result = await res.json();
-    if (res.ok) {
-      alert('✅ Driver registered successfully!');
-      // reset form
-      setFormData({
-        driverId: '',
-        fullName: '',
-        email: '',
-        phone: '',
-        licenseNumber: '',
-        experiance: '',
-        vehicleType: '',
-        availabilityDate: '',
-        dob: '',
-        additionalInfo: '',
-        profilePhoto: null,
-        licenseFront: null,
-        licenseBack: null,
-        licenseVerified: false,
-        acceptedTerms: false,
+    try {
+      const res = await fetch('http://localhost:5000/api/register-driver', {
+        method: 'POST',
+        body: form,
       });
-      setOcrText({ front: '', back: '' });
-      setOcrLicenseNumber('');
-      document.getElementById('profilePhoto').value = '';
-      document.getElementById('licenseFront').value = '';
-      document.getElementById('licenseBack').value = '';
-    } else {
-      alert('❌ Error: ' + result.error);
+
+      const result = await res.json();
+      if (res.ok) {
+        alert('✅ Driver registered successfully!');
+        // reset form
+        setFormData({
+          driverId: '',
+          fullName: '',
+          email: '',
+          phone: '',
+          licenseNumber: '',
+          experiance: '',
+          vehicleType: '',
+          availabilityDate: '',
+          dob: '',
+          additionalInfo: '',
+          profilePhoto: null,
+          licenseFront: null,
+          licenseBack: null,
+          licenseVerified: false,
+          acceptedTerms: false,
+        });
+        setOcrText({ front: '', back: '' });
+        setOcrLicenseNumber('');
+        document.getElementById('profilePhoto').value = '';
+        document.getElementById('licenseFront').value = '';
+        document.getElementById('licenseBack').value = '';
+      } else {
+        alert('❌ Error: ' + result.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('❌ Something went wrong.');
     }
-  } catch (err) {
-    console.error(err);
-    alert('❌ Something went wrong.');
-  }
-};
+  };
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="page-center">
         <form onSubmit={handleSubmit} className="container" noValidate>
           <h2>Driver Registration Form</h2>
@@ -294,7 +255,7 @@ const handleSubmit = async (e) => {
           <label>License Back</label>
           <input id="licenseBack" type="file" name="licenseBack" accept="image/*" onChange={handleChange} required />
 
-          {verifying && <p>🔍 Verifying license using AI (OCR)...</p>}
+          {verifying && <p>🔍 Verifying license, please wait...</p>}
           {licenseError && <p style={{ color: 'red' }}>{licenseError}</p>}
           {formData.licenseVerified && !licenseError && (
             <p style={{ color: 'green' }}>✅ License verification successful!</p>

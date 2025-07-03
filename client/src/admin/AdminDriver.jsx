@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 🔁 Added for navigation
+import { useNavigate } from 'react-router-dom';
 import '../Styles/AdminDriver.css';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 
@@ -7,13 +7,17 @@ const AdminDriver = () => {
   const [drivers, setDrivers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedDriver, setSelectedDriver] = useState(null);
-  const navigate = useNavigate(); // 🔁 Hook for navigation
+  const navigate = useNavigate();
 
+  // Fetch drivers data
   useEffect(() => {
     fetch('http://localhost:5000/api/drivers')
-      .then(res => res.json())
-      .then(setDrivers)
-      .catch(err => console.error('Failed to fetch drivers:', err));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Fetched Drivers:', data); // Debugging log to check data
+        setDrivers(data);
+      })
+      .catch((err) => console.error('Failed to fetch drivers:', err));
   }, []);
 
   const openConfirmModal = (driver) => {
@@ -37,14 +41,14 @@ const AdminDriver = () => {
 
       const result = await res.json();
       if (res.ok) {
-        alert("✅ Driver deleted");
-        setDrivers(prev => prev.filter(d => d._id !== _id));
+        alert('✅ Driver deleted');
+        setDrivers((prev) => prev.filter((d) => d._id !== _id));
       } else {
-        alert(result.error || "❌ Failed to delete.");
+        alert(result.error || '❌ Failed to delete.');
       }
     } catch (err) {
       console.error('Error:', err);
-      alert("❌ Something went wrong.");
+      alert('❌ Something went wrong.');
     } finally {
       setShowModal(false);
     }
@@ -76,6 +80,9 @@ const AdminDriver = () => {
                 <th>Verified</th>
                 <th>Vehicle</th>
                 <th>Experience</th>
+                <th>Profile Photo</th>
+                <th>License Front</th>
+                <th>License Back</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -90,8 +97,57 @@ const AdminDriver = () => {
                   <td>{d.dob}</td>
                   <td>{d.licenseNumber}</td>
                   <td>{d.licenseVerified ? '✅' : '❌'}</td>
-                  <td><span className="pill vehicle">{d.vehicleType}</span></td>
-                  <td><span className="pill experience">{d.experiance}</span></td>
+                  <td>
+                    <span className="pill vehicle">{d.vehicleType}</span>
+                  </td>
+                  <td>
+                    <span className="pill experience">{d.experiance}</span>
+                  </td>
+                  <td>
+                    {/* Profile Photo */}
+                    {d.profilePhoto ? (
+                      <img
+                        src={`http://localhost:5000/uploads/${d.profilePhoto}`}
+                        alt="Profile"
+                        className="driver-image"
+                        width={50}
+                        height={50}
+                        onError={(e) => e.target.src = 'http://localhost:5000/uploads/default-profile.png'}
+                      />
+                    ) : (
+                      <div>No Profile Photo</div>
+                    )}
+                  </td>
+                  <td>
+                    {/* License Front */}
+                    {d.licenseFront ? (
+                      <img
+                        src={`http://localhost:5000/uploads/${d.licenseFront}`}
+                        alt="License Front"
+                        className="driver-image"
+                        width={50}
+                        height={50}
+                        onError={(e) => e.target.src = 'http://localhost:5000/uploads/default-license.png'}
+                      />
+                    ) : (
+                      <div>No License Front</div>
+                    )}
+                  </td>
+                  <td>
+                    {/* License Back */}
+                    {d.licenseBack ? (
+                      <img
+                        src={`http://localhost:5000/uploads/1751260946741.png`}
+                        alt="License Back"
+                        className="driver-image"
+                        width={50}
+                        height={50}
+                        onError={(e) => e.target.src = 'http://localhost:5000/uploads/default-license.png'}
+                      />
+                    ) : (
+                      <div>No License Back</div>
+                    )}
+                  </td>
                   <td>
                     <button onClick={() => openConfirmModal(d)}>
                       🗑️ Delete

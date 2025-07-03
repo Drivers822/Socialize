@@ -112,3 +112,12 @@ button[type="submit"]:hover {
     padding: 0.65rem;
   }
 }
+
+.login-form, .register-form {
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.login-form button, .register-form button {
+  margin-top: 1rem;
+}

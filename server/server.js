@@ -1,9 +1,8 @@
-// server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -20,13 +19,16 @@ app.use(cors());
 app.use(express.json()); // Parse application/json
 app.use(express.urlencoded({ extended: true })); // Parse form data (multipart/form-data)
 
+// ✅ Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // ✅ Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('✅ MongoDB connected'))
-.catch((err) => console.error('❌ MongoDB error:', err));
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch((err) => console.error('❌ MongoDB error:', err));
 
 // ✅ Mount routes
 app.use('/api', driverRoutes);             // For driver registration, deletion, listing
