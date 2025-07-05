@@ -1,6 +1,7 @@
 .admin-dashboard {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #f0f4f8, #e2ebf0);
+  background: linear-gradient(135deg, rgb(0 158 255 / 14%), rgb(95 111 255 / 68%));
+
   min-height: 100vh;
   padding: 2rem;
 }
