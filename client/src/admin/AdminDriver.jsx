@@ -103,51 +103,51 @@ const AdminDriver = () => {
                   <td>
                     <span className="pill experience">{d.experiance}</span>
                   </td>
-                  <td>
-                    {/* Profile Photo */}
-                    {d.profilePhoto ? (
-                      <img
-                        src={`http://localhost:5000/uploads/${d.profilePhoto}`}
-                        alt="Profile"
-                        className="driver-image"
-                        width={50}
-                        height={50}
-                        onError={(e) => e.target.src = 'http://localhost:5000/uploads/default-profile.png'}
-                      />
-                    ) : (
-                      <div>No Profile Photo</div>
-                    )}
-                  </td>
-                  <td>
-                    {/* License Front */}
-                    {d.licenseFront ? (
-                      <img
-                        src={`http://localhost:5000/uploads/${d.licenseFront}`}
-                        alt="License Front"
-                        className="driver-image"
-                        width={50}
-                        height={50}
-                        onError={(e) => e.target.src = 'http://localhost:5000/uploads/default-license.png'}
-                      />
-                    ) : (
-                      <div>No License Front</div>
-                    )}
-                  </td>
-                  <td>
-                    {/* License Back */}
-                    {d.licenseBack ? (
-                      <img
-                        src={`http://localhost:5000/uploads/1751260946741.png`}
-                        alt="License Back"
-                        className="driver-image"
-                        width={50}
-                        height={50}
-                        onError={(e) => e.target.src = 'http://localhost:5000/uploads/default-license.png'}
-                      />
-                    ) : (
-                      <div>No License Back</div>
-                    )}
-                  </td>
+                 <td>
+  {/* Profile Photo */}
+  {d.profilePhoto ? (
+    <img
+      src={`http://localhost:5000/uploads/${d.profilePhoto}`}
+      alt="Profile"
+      className="driver-image"
+      width={50}
+      height={50}
+    />
+  ) : (
+    <div>No Profile Photo</div>
+  )}
+</td>
+
+<td>
+  {/* License Front */}
+  {d.licenseFront ? (
+    <img
+      src={`http://localhost:5000/uploads/${d.licenseFront}`}
+      alt="License Front"
+      className="driver-image"
+      width={50}
+      height={50}
+    />
+  ) : (
+    <div>No License Front</div>
+  )}
+</td>
+
+<td>
+  {/* License Back */}
+  {d.licenseBack ? (
+    <img
+      src={`http://localhost:5000/uploads/${d.licenseBack}`}
+      alt="License Back"
+      className="driver-image"
+      width={50}
+      height={50}
+    />
+  ) : (
+    <div>No License Back</div>
+  )}
+</td>
+
                   <td>
                     <button onClick={() => openConfirmModal(d)}>
                       🗑️ Delete
