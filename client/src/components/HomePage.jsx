@@ -1,73 +1,3 @@
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import '../Styles/HomePage.css';
-// import taxiIllustration from '../assets/hero-img copy.png';
-// import bookedIllustration from '../assets/hero-bg-2.jpg';
-// import About from './About'; // ✅ Corrected path
-// import WhyUs from './WhyUs'; // ✅ Corrected path
-// import CoreFeatures from './CoreFeatures'; // ✅ Corrected path
-// import Gallery from './Gallery'; // ✅ Corrected path
-// import Team from './Team'; // ✅ Corrected path
-// import Pricing from './Pricing'; // ✅ Corrected path
-// import Contacts from './Contacts'; // ✅ Corrected path
-// import Footer from './Footer'; // ✅ Corrected path
-
-// const HeroSection = () => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <>
-//       <section className="hero-section">
-//         <div className="hero-content">
-//           <h1>
-//             <span className="light-text">On-Demand Driver Services<br />with </span>
-//             <span className="highlight">Trust & Convenience</span>
-//           </h1>
-//           <p className="sub-text">
-//             Your ride is just a few taps away. Trustworthy drivers, smooth rides.
-//           </p>
-//           <p className="sub-text">
-//             Start your journey with our trusted driver network — seamless, secure, and efficient.
-//           </p>
-//           <div className="hero-buttons">
-//             <button className="round-arrow">{'➡'}</button>
-//             <button className="get-started" onClick={() => navigate('/start')}>
-//               Get Started - "Sign In First" 
-//             </button>
-//             <button className="round-arrow">{'⬅'}</button>
-//           </div>
-//         </div>
-
-//         <div className="hero-images floating-group">
-//           <div className="phone-screen">
-//             <img src={taxiIllustration} alt="Fast Response" />
-//             <h3>Fast Response</h3>
-//             <p>Get instant driver confirmation right after booking.</p>
-//           </div>
-//           <div className="phone-screen">
-//             <img src={bookedIllustration} alt="Easy Booking" />
-//             <h3>Easy Booking</h3>
-//             <p>Book your ride with just a few taps on the Web-app.</p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Optionally render About section below */}
-//       <About />
-//       <WhyUs />
-//       <CoreFeatures />
-//       <Gallery />
-//       <Team />
-//       <Pricing />
-//       <Contacts />
-//       <Footer />
-//     </>
-//   );
-// };
-
-// export default HeroSection;
-
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/HomePage.css';
@@ -114,11 +44,29 @@ const HeroSection = () => {
 
   const sendMessage = () => {
     if (!chatInput.trim()) return;
+
     const userMessage = { from: 'user', text: chatInput };
-    const aiReply = {
-      from: 'ai',
-      text: "🤖 I'm just a demo! Real AI reply goes here.",
-    };
+
+    let replyText = "🤖 I'm sorry, I didn't understand that.";
+
+    const lowerInput = chatInput.toLowerCase();
+
+    if (lowerInput.includes('book')) {
+      replyText = "🚗 You can book a driver by clicking 'Get Started' above and logging in.";
+    } else if (lowerInput.includes('price') || lowerInput.includes('cost')) {
+      replyText = "💰 Our pricing starts at ₹199 for the first hour. Check the Pricing section for more.";
+    } else if (lowerInput.includes('support') || lowerInput.includes('help')) {
+      replyText = "📞 You can contact our support via the WhatsApp button on the bottom right.";
+    } else if (lowerInput.includes('location') || lowerInput.includes('available')) {
+      replyText = "📍 Our drivers are available across major cities. Please enter your location on the booking page.";
+    } else if (lowerInput.includes('timing') || lowerInput.includes('hours')) {
+      replyText = "🕒 Our services are available 24/7. Book anytime!";
+    } else if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
+      replyText = "👋 Hello! How can I assist you today?";
+    }
+
+    const aiReply = { from: 'ai', text: replyText };
+
     setMessages((prev) => [...prev, userMessage, aiReply]);
     setChatInput('');
   };
@@ -127,8 +75,6 @@ const HeroSection = () => {
     <>
       <section className="hero-section">
         <div className="hero-content">
-
-          {/* ✅ Logo */}
           <div className="hero-logo-container">
             <img src={logo} alt="Company Logo" className="hero-logo" />
           </div>
@@ -169,7 +115,6 @@ const HeroSection = () => {
         </div>
       </section>
 
-      {/* Other Sections */}
       <About />
       <WhyUs />
       <CoreFeatures />
@@ -179,7 +124,7 @@ const HeroSection = () => {
       <Contacts />
       <Footer />
 
-      {/* ✅ WhatsApp Floating Icon */}
+      {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/917219080839"
         className="whatsapp-float"
@@ -189,19 +134,19 @@ const HeroSection = () => {
         <FaWhatsapp size={28} />
       </a>
 
-      {/* ✅ Scroll-to-top Arrow */}
+      {/* Scroll to Top Button */}
       {showScrollTop && (
         <button className="scroll-to-top" onClick={scrollToTop}>
           <FaArrowUp size={18} />
         </button>
       )}
 
-      {/* ✅ AI Chat Floating Button */}
+      {/* AI Chat Button */}
       <button className="ai-chat-button" onClick={() => setChatOpen(!chatOpen)}>
         <FaComments size={18} />
       </button>
 
-      {/* ✅ AI Chat Window */}
+      {/* Chat Window */}
       {chatOpen && (
         <div className="ai-chat-window">
           <div className="chat-header">
@@ -231,4 +176,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
