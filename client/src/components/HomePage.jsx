@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/HomePage.css';
 import {
@@ -27,8 +27,10 @@ const HeroSection = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState([
-    { from: 'ai', text: 'Hi! I’m your assistant. How can I help you today?' },
+    { from: 'ai', text: '👋 Hi there! How can I assist you today?' },
   ]);
+
+  const chatBodyRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,6 +40,12 @@ const HeroSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -46,23 +54,26 @@ const HeroSection = () => {
     if (!chatInput.trim()) return;
 
     const userMessage = { from: 'user', text: chatInput };
-
-    let replyText = "🤖 I'm sorry, I didn't understand that.";
-
     const lowerInput = chatInput.toLowerCase();
 
-    if (lowerInput.includes('book')) {
-      replyText = "🚗 You can book a driver by clicking 'Get Started' above and logging in.";
-    } else if (lowerInput.includes('price') || lowerInput.includes('cost')) {
-      replyText = "💰 Our pricing starts at ₹199 for the first hour. Check the Pricing section for more.";
-    } else if (lowerInput.includes('support') || lowerInput.includes('help')) {
-      replyText = "📞 You can contact our support via the WhatsApp button on the bottom right.";
-    } else if (lowerInput.includes('location') || lowerInput.includes('available')) {
-      replyText = "📍 Our drivers are available across major cities. Please enter your location on the booking page.";
-    } else if (lowerInput.includes('timing') || lowerInput.includes('hours')) {
-      replyText = "🕒 Our services are available 24/7. Book anytime!";
-    } else if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
-      replyText = "👋 Hello! How can I assist you today?";
+    let replyText = "🤖 I'm sorry, I didn't understand that. Please try asking in a different way.";
+
+    if (lowerInput.includes('register') || lowerInput.includes('sign up')) {
+      replyText = "📝 To register, click 'Get Started' and then choose 'Sign Up'.";
+    } else if (lowerInput.includes('book') || lowerInput.includes('ride')) {
+      replyText = "🚗 You can book a driver by clicking 'Get Started' and signing in.";
+    } else if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('charge')) {
+      replyText = "💰 Our pricing starts at ₹199 for the first hour. Check the Pricing section for more details.";
+    } else if (lowerInput.includes('support') || lowerInput.includes('help') || lowerInput.includes('problem')) {
+      replyText = "📞 You can reach our support team using the WhatsApp button at the bottom right.";
+    } else if (lowerInput.includes('location') || lowerInput.includes('city') || lowerInput.includes('available')) {
+      replyText = "📍 Our services are available in major cities. Enter your location on the booking page.";
+    } else if (lowerInput.includes('time') || lowerInput.includes('hours') || lowerInput.includes('when')) {
+      replyText = "🕒 Our services operate 24/7. You can book anytime!";
+    } else if (lowerInput.includes('hi') || lowerInput.includes('hello')) {
+      replyText = "👋 Hi there! How can I assist you today?";
+    } else if (lowerInput.includes('team') || lowerInput.includes('driver')) {
+      replyText = "🚘 Our drivers are verified professionals focused on your comfort and safety.";
     }
 
     const aiReply = { from: 'ai', text: replyText };
@@ -89,8 +100,7 @@ const HeroSection = () => {
             Your ride is just a few taps away. Trustworthy drivers, smooth rides.
           </p>
           <p className="sub-text">
-            Start your journey with our trusted driver network — seamless, secure,
-            and efficient.
+            Start your journey with our trusted driver network — seamless, secure, and efficient.
           </p>
           <div className="hero-buttons">
             <button className="round-arrow">{'➡'}</button>
@@ -142,7 +152,7 @@ const HeroSection = () => {
       )}
 
       {/* AI Chat Button */}
-      <button className="ai-chat-button" onClick={() => setChatOpen(!chatOpen)}>
+      <button className="ai-chat-button" onClick={() => setChatOpen(true)}>
         <FaComments size={18} />
       </button>
 
@@ -151,9 +161,18 @@ const HeroSection = () => {
         <div className="ai-chat-window">
           <div className="chat-header">
             AI Chat Support
-            <button onClick={() => setChatOpen(false)}>✖</button>
+            <button
+              onClick={() => {
+                setChatOpen(false);
+                setMessages([
+                  { from: 'ai', text: '👋 Hi there! How can I assist you today?' }
+                ]);
+              }}
+            >
+              ✖
+            </button>
           </div>
-          <div className="chat-body">
+          <div className="chat-body" ref={chatBodyRef}>
             {messages.map((msg, idx) => (
               <div key={idx} className={`chat-message ${msg.from}`}>
                 {msg.text}
@@ -166,8 +185,11 @@ const HeroSection = () => {
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
               placeholder="Type your message..."
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
             />
-            <button onClick={sendMessage}><FaPaperPlane /></button>
+            <button onClick={sendMessage}>
+              <FaPaperPlane />
+            </button>
           </div>
         </div>
       )}
