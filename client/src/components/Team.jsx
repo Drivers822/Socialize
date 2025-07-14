@@ -1,10 +1,10 @@
 // src/components/TeamSection.jsx
+
 import React from 'react';
 import '../Styles/Team.css';
 import ceoImg from '../assets/Rushi.jpg';
 import pmImg from '../assets/jay.jpg';
 import ctoImg from '../assets/Ajit.jpg';
-
 import { FaXTwitter, FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
 
 const platformIcons = {
@@ -34,7 +34,7 @@ const teamData = [
       { platform: 'x', link: 'https://x.com/DriversN3400' },
       { platform: 'facebook', link: 'https://www.facebook.com/share/1BnkLq4Gsg/?mibextid=wwXIfr' },
       { platform: 'instagram', link: 'https://www.instagram.com/jay_rahatal?igsh=M3hucDZsZndmMDdl&utm_source=qr' },
-      { platform: 'linkedin', link: 'https://www.linkedin.com/in/jay-rahatal-b569b8235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app' },
+      { platform: 'linkedin', link: 'https://www.linkedin.com/in/jay-rahatal-b569b8235' },
     ],
   },
   {
@@ -44,8 +44,8 @@ const teamData = [
     social: [
       { platform: 'x', link: 'https://x.com/DriversN3400' },
       { platform: 'facebook', link: 'https://www.facebook.com/ajit.chourasiya.50' },
-      { platform: 'instagram', link: 'https://www.instagram.com/ajit_140601?igsh=MW9oMmoyMGhvcjcxYQ==' },
-      { platform: 'linkedin', link: 'https://www.linkedin.com/in/ajit-chourashiya-83782a150?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+      { platform: 'instagram', link: 'https://www.instagram.com/ajit_140601' },
+      { platform: 'linkedin', link: 'https://www.linkedin.com/in/ajit-chourashiya-83782a150' },
     ],
   },
 ];
@@ -62,7 +62,9 @@ const TeamSection = () => {
       <div className="team-members">
         {teamData.map((member, index) => (
           <div className="member-card" key={index}>
-            <img src={member.image} alt={member.name} className="member-img" />
+            <div className="member-img-wrapper">
+              <img src={member.image} alt={member.name} className="member-img" />
+            </div>
             <div className="member-info">
               <h3>{member.name}</h3>
               <p>{member.role}</p>
