@@ -57,8 +57,9 @@
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   object-fit: cover;
-  height: 420px; /* ✅ Increased height */
+  height: 420px;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .gallery-item img:hover {
@@ -89,6 +90,20 @@
   margin-left: 0.5rem;
 }
 
+/* ✅ Fix for Lightbox thumbnail issue */
+/* ✅ Lightbox fullscreen fit fix */
+.yarl__slide_image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  margin: auto;
+  display: block;
+}
+
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .gallery-title {
@@ -110,7 +125,7 @@
   }
 
   .gallery-item img {
-    height: 340px; /* ✅ Adjusted */
+    height: 340px;
   }
 
   .carousel-arrow {
@@ -130,7 +145,7 @@
   }
 
   .gallery-item img {
-    height: 300px; /* ✅ Adjusted */
+    height: 300px;
   }
 
   .carousel-arrow {
