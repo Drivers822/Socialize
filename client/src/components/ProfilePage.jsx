@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/Profile.css';
+import Navbar from './Navbar';
+import Footer from './Footer'; // ✅ Import Footer
 
 const ProfilePage = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +12,7 @@ const ProfilePage = () => {
     address: '',
     profilePhoto: '',
   });
-
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,6 +54,8 @@ const ProfilePage = () => {
   };
 
   return (
+        <>
+      <Navbar />
     <div className="profile-container">
       <h2>User Profile</h2>
 
@@ -110,6 +114,8 @@ const ProfilePage = () => {
         <button type="button" onClick={handleLogout} className="logout-btn">Logout</button>
       </form>
     </div>
+    <Footer /> {/* ✅ Footer at the bottom */}
+    </>
   );
 };
 
