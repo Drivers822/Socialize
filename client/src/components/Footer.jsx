@@ -26,7 +26,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Sinnar, Nashik, Maharashtra
+              Nashik, Maharashtra, India
             </a>
           </p>
           <p>
@@ -52,7 +52,7 @@ const Footer = () => {
 
       {/* Bottom Line */}
       <p className="footer-bottom">
-        © 2025 <strong>Drivers-Socialize-Networks</strong>. All Rights Reserved.
+        Copyright © 2025 <strong>Drivers-Socialize-Networks</strong>. All Rights Reserved.
       </p>
     </footer>
   );
