@@ -30,7 +30,7 @@ const ContactSection = () => {
   return (
     <section className="contact-section">
       <div className="contact-left">
-        <p className="contact-label">CONTACT</p>
+        <p className="contact-label">CONTACTs</p>
         <h2 className="gallery-title">
           CHECK <span className="highlight">OUR CONTACT</span>
         </h2>
